@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elvis Chen | 個人主頁</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --card-hover: rgba(255, 255, 255, 0.08);
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      line-height: 1.6;
+      background-attachment: fixed;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Header Profile Card */
+    .profile-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 104px;
+      height: 104px;
+      margin-bottom: 18px;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #38bdf8, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .status-badge {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      background: #10b981;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 3px solid #0f172a;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .title-tag {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .bio {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 520px;
+      margin-bottom: 24px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-outline:hover {
+      background: var(--card-hover);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Section Cards */
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 24px 28px;
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #e2e8f0;
+      transition: all 0.2s;
+    }
+
+    .skill-pill:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* Projects / Highlights */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .project-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .project-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(99, 102, 241, 0.35);
+      transform: translateX(4px);
+    }
+
+    .project-info h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .project-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .project-arrow {
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* Interactive Toy / Widget */
+    .interactive-box {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(56, 189, 248, 0.1));
+      border: 1px dashed rgba(99, 102, 241, 0.4);
+      border-radius: 16px;
+    }
+
+    .counter-display {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 10px 0;
+    }
+
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Profile Card -->
+    <div class="profile-card">
+      <div class="avatar-wrapper">
+        <div class="avatar">🚀</div>
+        <div class="status-badge" title="Online / Building"></div>
+      </div>
+      <h1>Elvis Chen</h1>
+      <div class="title-tag">AI Agent & Tech Explorer</div>
+      <p class="bio">
+        嗨！我是 Elvis。專注於探索 AI Agent、自動化流程與全端創意開發。這裡是一處隨筆實驗與個人作品展示小天地！
+      </p>
+      <div class="social-links">
+        <a href="https://github.com/nutcelvischen-jpg" target="_blank" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub 個人檔案
+        </a>
+        <a href="https://nutcelvischen-jpg.github.io/" target="_blank" class="btn btn-outline">
+          🌐 Git & Skill Hub
+        </a>
+      </div>
+    </div>
+
+    <!-- Skills Card -->
+    <div class="section-card">
+      <div class="section-title">
+        <span>⚡ 技能與專注領域</span>
+      </div>
+      <div class="skills-grid">
+        <span class="skill-pill">🤖 AI Agent Integration</span>
+        <span class="skill-pill">🔌 MCP (Model Context Protocol)</span>
+        <span class="skill-pill">🐍 Python & Automation</span>
+        <span class="skill-pill">☁️ Google Apps Script & Cloud</span>
+        <span class="skill-pill">🌐 Front-End / Responsive Web</span>
+        <span class="skill-pill">🎨 Interactive Visuals</span>
+        <span class="skill-pill">📊 Data Analysis & Motion</span>
+      </div>
+    </div>
+
+    <!-- Projects / Showcase -->
+    <div class="section-card">
+      <div class="section-title">
+        <span>📁 精選專案與實驗</span>
+      </div>
+      <div class="project-list">
+        <a href="https://github.com/nutcelvischen-jpg/gas-line-order-notify" target="_blank" class="project-item">
+          <div class="project-info">
+            <h4>gas-line-order-notify</h4>
+            <p>Google Apps Script 與 LINE 訂單即時推播通知整合系統</p>
+          </div>
+          <span class="project-arrow">→</span>
+        </a>
+        <a href="https://github.com/nutcelvischen-jpg/cowboy-balance" target="_blank" class="project-item">
+          <div class="project-info">
+            <h4>cowboy-balance</h4>
+            <p>互動式趣味網頁遊戲與物理平衡體驗展示</p>
+          </div>
+          <span class="project-arrow">→</span>
+        </a>
+        <a href="https://github.com/nutcelvischen-jpg/halloween-wardrobe" target="_blank" class="project-item">
+          <div class="project-info">
+            <h4>halloween-wardrobe</h4>
+            <p>萬聖節主題換裝與互動造型實驗專案</p>
+          </div>
+          <span class="project-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Interactive Fun Box -->
+    <div class="section-card">
+      <div class="section-title">
+        <span>🎉 互動點擊激勵</span>
+      </div>
+      <div class="interactive-box">
+        <p style="color: var(--text-muted); font-size: 14px;">點擊下方按鈕為今天的開發靈感充個電：</p>
+        <div class="counter-display" id="sparkleCounter">0</div>
+        <button class="btn btn-primary" onclick="addSparkle()">✨ 點擊充能 (+1)</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Elvis Chen. Built with AI Pair Programming & Deployed on GitHub Pages.</p>
+    </footer>
+  </div>
+
+  <script>
+    let count = 0;
+    function addSparkle() {
+      count++;
+      const el = document.getElementById('sparkleCounter');
+      el.textContent = count;
+      el.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        el.style.transform = 'scale(1)';
+      }, 150);
+    }
+  </script>
+</body>
+</html>
